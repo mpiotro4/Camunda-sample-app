@@ -1,0 +1,29 @@
+<html layout:decorate="layouts/defaultLayout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container my-5" layout:fragment="content">
+    <h1>Process History</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Business Key</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="process : ${historicProcesses}">
+            <td th:text="${process.id}"></td>
+            <td th:text="${process.businessKey}"></td>
+            <td th:text="${process.startTime}"></td>
+            <td th:text="${process.endTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

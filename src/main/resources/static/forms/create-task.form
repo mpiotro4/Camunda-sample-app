@@ -1,0 +1,48 @@
+{
+  "components": [
+    {
+      "key": "taskName",
+      "label": "Task name",
+      "type": "textfield",
+      "validate": {
+        "required": false
+      },
+      "description": "Provide name of the task",
+      "id": "Field_1tjpt33"
+    },
+    {
+      "key": "description",
+      "label": "Descirption",
+      "type": "textfield",
+      "description": "Provide description of the task",
+      "validate": {
+        "required": true
+      },
+      "id": "Field_0nr94sf"
+    },
+    {
+      "values": [
+        {
+          "label": "Low Priority",
+          "value": "low"
+        },
+        {
+          "label": "High Priority",
+          "value": "high"
+        }
+      ],
+      "label": "Radio",
+      "type": "radio",
+      "id": "Field_19xh27x",
+      "key": "priority",
+      "defaultValue": "value"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1bi1e23",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.8.0"
+  },
+  "schemaVersion": 7
+}

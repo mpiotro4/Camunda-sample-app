@@ -1,0 +1,70 @@
+<html layout:decorate="layouts/defaultLayout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container my-5" layout:fragment="content">
+    <h1>Start Task Process</h1>
+    <form th:action="@{/start-task-process}" method="post">
+        <label for="businessKey">Business Key:</label>
+        <input type="text" id="businessKey" name="businessKey" required>
+        <!-- Pole: Description -->
+        <div class="form-group">
+            <label for="description">Opis Zadania:</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+        </div>
+
+        <!-- Pole: Priority -->
+        <div class="form-group">
+            <label for="priority">Priorytet:</label>
+            <select class="form-control" id="priority" name="priority" required>
+                <option value="high">Wysoki</option>
+                <option value="low">Niski</option>
+            </select>
+        </div>
+
+        <!-- Przycisk do przesłania formularza -->
+        <button type="submit" class="btn btn-primary">Utwórz Zadanie</button>
+    </form>
+
+    <h2>Lista Zadań</h2>
+    <!-- Stylizacja tabeli za pomocą Bootstrap -->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Priorytet</th>
+                <th>Zrobione</th> <!-- Dodajemy kolumnę na zrobione -->
+                <th>Akcje</th> <!-- Dodajemy kolumnę na akcje -->
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Pętla po zadaniach, które zostały przekazane z kontrolera -->
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.id}">ID</td>
+                <td th:text="${task.name}">Nazwa</td>
+                <td th:text="${task.description}">Opis</td>
+                <td th:text="${task.priority}">Priorytet</td>
+                <td>
+                    <!-- Dodajemy pole wyboru typu checkbox do wskazania, czy zadanie jest zrobione -->
+                    <input type="checkbox" th:checked="${task.completed}" th:id="${task.id}"
+                           onclick="updateTaskCompletionStatus(this.id, this.checked)">
+                </td>
+                <td>
+                    <!-- Dodajemy przycisk do usuwania zadania -->
+                    <form th:action="@{'/api/tasks/delete/' + ${task.id}}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

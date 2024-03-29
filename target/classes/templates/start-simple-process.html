@@ -1,0 +1,14 @@
+<html layout:decorate="layouts/defaultLayout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container my-5" layout:fragment="content">
+    <h1>Start Simple Process</h1>
+    <form th:action="@{/start-simple-process}" method="post">
+        <label for="businessKey">Business Key:</label>
+        <input type="text" id="businessKey" name="businessKey" required>
+        <button type="submit">Start Process</button>
+    </form>
+</div>
+</body>
+</html>
