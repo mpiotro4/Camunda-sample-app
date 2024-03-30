@@ -12,39 +12,41 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-
+    private final ToDoTaskService toDoTaskService;
     @Autowired
-    private ToDoTaskService taskService;
+    public TaskController(ToDoTaskService toDoTaskService) {
+        this.toDoTaskService = toDoTaskService;
+    }
 
     @GetMapping
     public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+        return toDoTaskService.getAllTasks();
     }
 
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id) {
-        return taskService.getTaskById(id);
+        return toDoTaskService.getTaskById(id);
     }
 
     @PostMapping
     public Task createTask(@RequestBody Task task) {
-        return taskService.createTask(task);
+        return toDoTaskService.createTask(task);
     }
 
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
-        return taskService.updateTask(id, taskDetails);
+        return toDoTaskService.updateTask(id, taskDetails);
     }
 
     @PostMapping("/delete/{id}")
     public RedirectView deleteTask(@PathVariable Long id) {
-        taskService.deleteTask(id);
+        toDoTaskService.deleteTask(id);
         return new RedirectView("/start-task-process-form", true);
     }
 
     @PostMapping("/updateCompletionStatus/{id}")
     public ResponseEntity<String> updateTaskCompletionStatus(@PathVariable Long id, @RequestParam boolean completed) {
-        taskService.updateTaskCompletionStatus(id, completed);
+        toDoTaskService.updateTaskCompletionStatus(id, completed);
         return ResponseEntity.ok("Task completion status updated successfully");
     }
 }

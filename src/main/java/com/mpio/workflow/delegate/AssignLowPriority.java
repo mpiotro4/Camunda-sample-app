@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 public class AssignLowPriority implements JavaDelegate {
+    private final ToDoTaskService toDoTaskService;
     @Autowired
-    private ToDoTaskService taskService;
-
+    public AssignLowPriority(ToDoTaskService toDoTaskService){
+        this.toDoTaskService = toDoTaskService;
+    }
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String priority = (String) delegateExecution.getVariable("priority");
@@ -22,6 +24,6 @@ public class AssignLowPriority implements JavaDelegate {
         task.setPriority(priority);
         task.setDescription(description);
         task.setName(taskName);
-        taskService.createTask(task);
+        toDoTaskService.createTask(task);
     }
 }

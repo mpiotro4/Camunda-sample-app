@@ -17,13 +17,16 @@ import java.util.List;
 
 @Controller
 public class CamundaController {
-    @Autowired
-    private RuntimeService runtimeService;
-    @Autowired
-    private TaskRepository taskRepository;
-    @Autowired
-    private TaskService taskService;
+    private final RuntimeService runtimeService;
+    private final TaskRepository taskRepository;
+    private final TaskService taskService;
 
+    @Autowired
+    public CamundaController(RuntimeService runtimeService, TaskRepository taskRepository, TaskService taskService) {
+        this.runtimeService = runtimeService;
+        this.taskRepository = taskRepository;
+        this.taskService = taskService;
+    }
     @GetMapping("/start-simple-process-form")
     public String showStartProcessForm() {
         return "start-simple-process";
