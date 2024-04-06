@@ -5,26 +5,18 @@ Feature: Test Camunda Process with Cucumber
     When I add 2 and 3
     Then the result should be 5
 
-  Scenario: Testing Camunda Process Deployment
-    Given a Camunda process engine is set up
-    When the process is deployed
-    Then the process should be deployed
-    When process instance is started
-    Then the process should be available
+  Scenario: High
+    When the task_process.bpmn is started
+    Then process is awaiting at create new task
+    When task is completed with high
+    Then process has passed assign-high
+    And process has passed task-created
+    And process has ended
 
-  Scenario: scenario 0
-    Given User wants to create a new task
-    When Create new task
-    Then Priority of the task priority = ?
-    When Assign to high priority queue priority = high
-    Then Priority assigned
-    And Task created
-
-  Scenario: scenario 1
-    Given User wants to create a new task
-    When Create new task
-    Then Priority of the task priority = ?
-    When Assign to low priority queue priority = low
-    Then Priority assigned
-    And Task created
-
+  Scenario: Low
+    When the task_process.bpmn is started
+    Then process is awaiting at create new task
+    When task is completed with Low
+    Then process has passed assign-low
+    And process has passed task-created
+    And process has ended
