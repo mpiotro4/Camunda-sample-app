@@ -16,6 +16,7 @@
     <version.bpm-assert>4.0.0</version.bpm-assert>
     <version.mockito>2.24.5</version.mockito>
     <version.powermock>2.0.0</version.powermock>
+    <camunda-process-test-coverage.version>2.3.3-SNAPSHOT</camunda-process-test-coverage.version>
   </properties>
 
   <dependencyManagement>
@@ -151,6 +152,32 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.bpm.extension</groupId>
+      <artifactId>camunda-bpm-assert-scenario</artifactId>
+      <version>1.1.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.community.process_test_coverage</groupId>
+      <artifactId>camunda-process-test-coverage-spring-test-platform-7</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.community.process_test_coverage</groupId>
+      <artifactId>camunda-process-test-coverage-junit4-platform-7</artifactId>
+      <version>2.4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.community.process_test_coverage</groupId>
+      <artifactId>camunda-process-test-coverage-spring-test-platform-7</artifactId>
+      <version>2.4.0</version>
       <scope>test</scope>
     </dependency>
 
