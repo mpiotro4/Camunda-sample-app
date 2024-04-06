@@ -12,7 +12,7 @@ public class ToDoTaskService {
     private final TaskRepository taskRepository;
 
     @Autowired
-    private ToDoTaskService(TaskRepository taskRepository){
+    public ToDoTaskService(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
     }
 
